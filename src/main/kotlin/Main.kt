@@ -5,9 +5,10 @@ fun main() {
 fun solution(votes: MutableList<Int>, k: Int): Int {
     val map = HashMap<Int, Int>()
     var count = 0
+    val max = votes.maxOrNull() ?: 0
     for (i in 0 until votes.size) {
         map[votes[i]] = (map[votes[i]] ?: 0) + 1
-        if (isGreaterThanAll(votes, votes[i] + k)) {
+        if (k + votes[i] > max) {
             count++
         }
     }
@@ -18,9 +19,5 @@ fun solution(votes: MutableList<Int>, k: Int): Int {
     }
 
     return count
-}
-
-fun isGreaterThanAll(votes: MutableList<Int>, k: Int): Boolean {
-    return k > (votes.maxOrNull() ?: 0)
 }
 
